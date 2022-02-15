@@ -7,7 +7,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'//国际化
 import Axios from 'axios'
-import installIcon from './util/iconsUtil'
+//import installIcon from './util/iconsUtil'
 
 const app = createApp(App)
 // installElementPlus(app)
