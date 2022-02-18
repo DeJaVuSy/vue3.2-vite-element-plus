@@ -81,7 +81,7 @@ import avatar from "../assets/img/admin.jpg";//头像
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
-    background-color: #7a7676;
+    background-color: #aaaaaa;
     .header_left {
         flex: 1;
         font-size: 24px;
