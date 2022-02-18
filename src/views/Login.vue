@@ -6,7 +6,8 @@
                     <span>用户登录</span>
                 </div>
             </template>
-            <el-form :model="loginFormState" :rules="rules" ref="loginFormRef">
+            <!-- 在表单属性中加入以下代码即可实现回车键登录 @keyup.enter.native="handleLogin" -->
+            <el-form :model="loginFormState" :rules="rules" ref="loginFormRef" @keyup.enter.native="handleLogin">
                 <el-form-item prop="name">
                     <el-input
                         @input="rememberMeChange()"
@@ -26,7 +27,6 @@
                         show-password
                         placeholder="请输入密码"
                         clearable
-                        @keyup.enter.exact="handleLogin"
                     ></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -157,7 +157,7 @@ import {Login} from "../interface/login"
                     //alert(token);
                     localStorage.setItem('token',token)
                     // 路由跳转
-                    router.push('/index')
+                    router.push('/home')
                 }else{
                     ElMessage.error('用户名或密码错误');
                 }

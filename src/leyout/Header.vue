@@ -75,12 +75,13 @@ import avatar from "../assets/img/admin.jpg";//头像
 <style lang="scss" scoped>
 .el-header {
     padding: 0 16px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgb(42, 139, 168);
     display: flex;
     display: -webkit-flex;
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
+    background-color: #7a7676;
     .header_left {
         flex: 1;
         font-size: 24px;

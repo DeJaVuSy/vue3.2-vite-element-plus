@@ -1,18 +1,19 @@
 <template>
     <el-aside :width="isCollapse ? `64px` : `200px`">
         <div class="logo">
-            <img src="../assets/img/avatar.png" alt="logo" draggable="false" />
+            <img src="../assets/img/admin.jpg" alt="logo" draggable="false" />
             <!-- <p>Vite2 Admin</p> -->
         </div>
-        <!-- 在el-menu添加 unique-opened 效果：打开其他子菜单时收起当前父菜单 -->
+        <!-- 在el-menu添加 unique-opened， 效果：打开其他子菜单时收起当前父菜单 -->
         <el-menu
             background-color="#001529"
             text-color="#eee"
             active-text-color="#fff"
+            router
             unique-opened
             :collapse="isCollapse"
-            :default-openeds="['1']"
-            class="el-menu-vertical-demo"
+            :default-openeds="[state.defaultOpeneds]"
+            :default-active="state.defaultActive"
             @select="handleSelect"
         >
             <el-sub-menu index="1">
@@ -20,9 +21,9 @@
                 <el-icon><HomeFilled /></el-icon>
                 <span>主页</span>
               </template>
-              <el-menu-item index="1-1">了解项目</el-menu-item>
+              <el-menu-item :index="home">了解项目</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu index="2">
+            <!-- <el-sub-menu index="2">
               <template #title>
                 <el-icon><Setting /></el-icon>
                 <span>系统管理</span>
@@ -47,15 +48,19 @@
               </template>
               <el-menu-item index="4-1">代码生成</el-menu-item>
               <el-menu-item index="4-2">系统接口</el-menu-item>
-            </el-sub-menu>
-            <el-sub-menu v-for="menu in state.listMenu" :index="menu.menuId">
-              <template #title>
-                <el-icon><Tools /></el-icon>
-                <span>{{menu.menuName}}</span>
-              </template>
-              <el-menu-item index="4-1">代码生成</el-menu-item>
-              <el-menu-item index="4-2">系统接口</el-menu-item>
-            </el-sub-menu>
+            </el-sub-menu> -->
+            <template  v-for="MenuParent in state.listMenuParent" :key="MenuParent.menuName">
+                <el-sub-menu :index="MenuParent.menuName">
+                  <template #title>
+                    <!-- <component :is="$icon[MenuParent.icon]"/> 动态图标 -->
+                    <el-icon><component :is="$icon[MenuParent.icon]"/></el-icon>
+                    <span>{{MenuParent.menuName}}</span>
+                  </template>
+                  <template v-for="Menuchildren in state.listMenuchildren">
+                    <el-menu-item  v-if="MenuParent.menuId == Menuchildren.parentId" :index="Menuchildren.url">{{Menuchildren.menuName}}</el-menu-item>
+                  </template>
+                </el-sub-menu>
+            </template>
         </el-menu>
         <div class="fold" @click="changeCollapse">
             <i v-show="!isCollapse" class="el-icon-d-arrow-left">收起菜单</i>
@@ -76,18 +81,33 @@ import {MenuQuery} from '../interface/Menu';//接口
 
   // 必须先声明调用
   const router = useRouter();
-  const route = useRoute()
+  const route = useRoute();
 
 
 
   //页面加载时执行
   nextTick(() => {
-    MenuQuery().then((response) =>{ 
-      state.listMenu = response.data;
-      console.log(response);
-      console.log(state.listMenu);
-      console.log(state.listMenu[0].menuName);
-    })
+    
+    //菜单查询
+    menuQuery();
+    //获取当前路由url
+    //console.log('打印路由',router.currentRoute._value.fullPath);
+    // if(router.currentRoute._value.fullPath == '/index'){
+    //   router.push('/notFound');
+    // }
+
+    // let menuSelect = sessionStorage.getItem('menuSelect');
+    // //console.log(menuSelect);
+    // if(menuSelect != null){
+    //   let menuSelectArray = menuSelect.split(',');
+    //   state.defaultOpeneds = menuSelectArray[0];
+    //   state.defaultActive = menuSelectArray[1];
+    //   // console.log(state.defaultOpeneds);
+    //   // console.log(state.defaultActive);
+    // }else{
+    //   router.push('/notFound');
+    // }
+    
   })
 
   // ref声明响应式数据，用于声明基本数据类型
@@ -95,11 +115,32 @@ import {MenuQuery} from '../interface/Menu';//接口
   // 修改
   name.value = 'Tom'
 
+  const home = ref('/home')
+
   // reactive声明响应式数据，用于声明引用数据类型
   const state = reactive({ 
     //isCollapse: false
-    listMenu:[],
+    listMenuParent:[],//一级菜单
+    listMenuchildren:[],//二级菜单
+    defaultOpeneds:sessionStorage.getItem('menuSelect')==null?'1':sessionStorage.getItem('menuSelect').split(',')[0],//默认打开一级菜单
+    defaultActive:sessionStorage.getItem('menuSelect')==null?home:sessionStorage.getItem('menuSelect').split(',')[1],//默认选中二级菜单
   });
+
+  //菜单查询
+  const menuQuery = () => {
+    MenuQuery().then((response) =>{
+      //state.listMenu = response.data;
+      
+      response.data.forEach(Menu => {
+        //console.log(Menu.menuId);
+        if(Menu.parentId == 0){
+          state.listMenuParent.push(Menu);
+        }else{
+          state.listMenuchildren.push(Menu)
+        }
+      });
+    })
+  }
 
   //菜单栏展开或收起
   const changeCollapse = () => {
@@ -117,55 +158,58 @@ import {MenuQuery} from '../interface/Menu';//接口
     console.log(key, keyPath)
   }
   const handleSelect = (key, keyPath) => {
-    switch (key) {
-      case '1-1':
-        router.push('/notFound');
-        // router.push({
-        //   path:'/tabs',
-        //   name:'Tabs',
-        //   params:{
-        //     tabNmae : '了解项目'
-        //   }
-        // });
-        break;
-      case '2-1':
-        router.push('/notFound');
-        // router.push({
-        //   path:'/tabs',
-        //   name:'Tabs',
-        //   params:{
-        //     tabNmae : '选项1'
-        //   }
-        // });
-        break;
-      case '2-2':
-        router.push('/notFound');
-        // router.push({
-        //   path:'/tabs',
-        //   name:'Tabs',
-        //   params:{
-        //     tabNmae : '选项2'
-        //   }
-        // });
-        break;
-      case '3-3':
-        router.push('/druid')
-        break;
-      case '3-4':
-        router.push('/serverM')
-        break;
-      case '4-1':
-        // 路由跳转
-        router.push('/genTableHomeVue3')
-        break;
-      case '4-2':
-        // 路由跳转
-        router.push('/swagger')
-        break;
-      default:
-        break;
-    }
-    console.log(key, keyPath)
+    
+    //会话存储选中的菜单，页面刷新后默认打开一级菜单和选中二级菜单
+    sessionStorage.setItem('menuSelect',keyPath);
+    // switch (key) {
+    //   case '1-1':
+    //     router.push('/notFound');
+    //     // router.push({
+    //     //   path:'/tabs',
+    //     //   name:'Tabs',
+    //     //   params:{
+    //     //     tabNmae : '了解项目'
+    //     //   }
+    //     // });
+    //     break;
+    //   case '2-1':
+    //     router.push('/notFound');
+    //     // router.push({
+    //     //   path:'/tabs',
+    //     //   name:'Tabs',
+    //     //   params:{
+    //     //     tabNmae : '选项1'
+    //     //   }
+    //     // });
+    //     break;
+    //   case '2-2':
+    //     router.push('/notFound');
+    //     // router.push({
+    //     //   path:'/tabs',
+    //     //   name:'Tabs',
+    //     //   params:{
+    //     //     tabNmae : '选项2'
+    //     //   }
+    //     // });
+    //     break;
+    //   case '3-3':
+    //     router.push('/druid')
+    //     break;
+    //   case '3-4':
+    //     router.push('/serverM')
+    //     break;
+    //   case '4-1':
+    //     // 路由跳转
+    //     router.push('/genTableHomeVue3')
+    //     break;
+    //   case '4-2':
+    //     // 路由跳转
+    //     router.push('/swagger')
+    //     break;
+    //   default:
+    //     break;
+    // }
+    // console.log(key, keyPath)
   }
 </script>
 
