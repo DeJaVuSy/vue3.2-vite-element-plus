@@ -1,22 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../page/Login.vue'
+import Login from '../views/Login.vue'
 import NotFound from '../components/NotFound.vue'
-import GenTableHome from '../page/GenTableHome.vue'
-import GenTableHomeVue3 from '../page/GenTableHomeVue3.vue'
-import Home from '../components/home.vue'
-import Swagger from '../page/Swagger.vue'
-import Druid from '../page/Druid.vue'
+import GenTableHome from '../test/testGenTableHome.vue'
+import GenTableHomeVue3 from '../views/GenTableSSM.vue'
+import Home from '../views/home.vue'
+import Swagger from '../views/Swagger.vue'
+import Druid from '../views/Druid.vue'
 import Index from '../leyout/Index.vue'
 import Tabs from '../leyout/Tabs.vue'
-import Test from '../leyout/test.vue'
-import ServerM from '../page/ServerM.vue'
+import ServerM from '../views/ServerM.vue'
 
 const routes = [
-   {
-      path: '/home',
-      name:'Home',
-      component: Home,//页面最初加载的组件
-   },
    {
       path: '/:pathMatch(.*)*',
       name: 'Login', 
@@ -35,6 +29,11 @@ const routes = [
          requireAuth: true
       },
       children: [  //路由的嵌套，实现页面局部刷新
+         {
+            path: '/home',
+            name:'Home',
+            component: Home,//页面最初加载的组件
+         },
          {
             path: '/notFound',
             name:'NotFound',
@@ -61,11 +60,6 @@ const routes = [
             component: ServerM
          },
       ]
-   },
-   {
-      path: '/test', 
-      name: 'Test', 
-      component: Test
    },
 
 

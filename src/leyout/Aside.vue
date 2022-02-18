@@ -1,7 +1,7 @@
 <template>
     <el-aside :width="isCollapse ? `64px` : `200px`">
         <div class="logo">
-            <img src="../assets/img/avatar.png" alt="logo" draggable="false" />
+            <img src="../assets/img/admin.jpg" alt="logo" draggable="false" />
             <!-- <p>Vite2 Admin</p> -->
         </div>
         <!-- 在el-menu添加 unique-opened， 效果：打开其他子菜单时收起当前父菜单 -->
@@ -21,7 +21,7 @@
                 <el-icon><HomeFilled /></el-icon>
                 <span>主页</span>
               </template>
-              <el-menu-item index="/notFound">了解项目</el-menu-item>
+              <el-menu-item :index="home">了解项目</el-menu-item>
             </el-sub-menu>
             <!-- <el-sub-menu index="2">
               <template #title>
@@ -115,13 +115,15 @@ import {MenuQuery} from '../interface/Menu';//接口
   // 修改
   name.value = 'Tom'
 
+  const home = ref('/home')
+
   // reactive声明响应式数据，用于声明引用数据类型
   const state = reactive({ 
     //isCollapse: false
     listMenuParent:[],//一级菜单
     listMenuchildren:[],//二级菜单
     defaultOpeneds:sessionStorage.getItem('menuSelect')==null?'1':sessionStorage.getItem('menuSelect').split(',')[0],//默认打开一级菜单
-    defaultActive:sessionStorage.getItem('menuSelect')==null?'/notFound':sessionStorage.getItem('menuSelect').split(',')[1],//默认选中二级菜单
+    defaultActive:sessionStorage.getItem('menuSelect')==null?home:sessionStorage.getItem('menuSelect').split(',')[1],//默认选中二级菜单
   });
 
   //菜单查询

@@ -157,7 +157,7 @@ import {Login} from "../interface/login"
                     //alert(token);
                     localStorage.setItem('token',token)
                     // 路由跳转
-                    router.push('/index')
+                    router.push('/home')
                 }else{
                     ElMessage.error('用户名或密码错误');
                 }
