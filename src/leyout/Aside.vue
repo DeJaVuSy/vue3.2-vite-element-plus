@@ -21,7 +21,8 @@
                 <el-icon><HomeFilled /></el-icon>
                 <span>主页</span>
               </template>
-              <el-menu-item :index="home">了解项目</el-menu-item>
+              <el-menu-item :index="home">系统简介</el-menu-item>
+              <el-menu-item index="/dashboard">Dashboard</el-menu-item>
             </el-sub-menu>
             <!-- <el-sub-menu index="2">
               <template #title>

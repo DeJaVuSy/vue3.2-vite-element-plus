@@ -5,7 +5,8 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   server: {				// ← ← ← ← ← ←
-    host: '0.0.0.0'	// ← 新增内容 ←
+    host: '0.0.0.0',	// ← 新增内容 ←
+    port: 3001,
   },
   base:'./', // 添加这个属性
   css: {

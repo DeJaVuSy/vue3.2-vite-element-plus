@@ -1,8 +1,13 @@
 <template>
+    <div>项目开发中...</div>
     <div>Not Found 404</div>
-    <el-link href="http://172.16.1.44:3000/genTableHome" target="_blank" type="primary">代码生成页面：http://172.16.1.44:3000/genTableHome</el-link>
+    <div>
+        <el-link href="/home" target="_blank" type="primary">主页：http://localhost:3000/home</el-link>
+    </div>
+    <div>
+        <el-link href="/swagger" target="_blank" type="primary">接口测试：localhost:3000/swagger</el-link>
+    </div>
     
-    <div><el-link href="http://localhost:3000/genTableHomeVue3" target="_blank" type="primary">本地访问：http://localhost:3000/genTableHomeVue3</el-link></div>
     
 </template>
 

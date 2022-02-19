@@ -2,13 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import NotFound from '../components/NotFound.vue'
 import GenTableHome from '../test/testGenTableHome.vue'
-import GenTableHomeVue3 from '../views/GenTableSSM.vue'
+import GenTableSSM from '../views/GenTableSSM.vue'
 import Home from '../views/home.vue'
 import Swagger from '../views/Swagger.vue'
 import Druid from '../views/Druid.vue'
 import Index from '../leyout/Index.vue'
 import Tabs from '../leyout/Tabs.vue'
 import ServerM from '../views/ServerM.vue'
+import Dashboard  from '../views/Dashboard.vue'
 
 const routes = [
    {
@@ -22,8 +23,8 @@ const routes = [
       component: GenTableHome
    },
    {
-      path: '/index', 
-      name: 'Index', 
+      path: '/index',
+      name: 'Index',
       component: Index,
       meta: {
          requireAuth: true
@@ -32,31 +33,49 @@ const routes = [
          {
             path: '/home',
             name:'Home',
+            meta: { title: "项目简介" },
             component: Home,//页面最初加载的组件
+         },
+         {
+            path: '/dashboard',
+            name:'Dashboard',
+            meta: { title: "服务器监控" ,roles: ["admin"]},
+            component: Dashboard
          },
          {
             path: '/notFound',
             name:'NotFound',
+            meta: { title: "404" },
             component: NotFound
          },
          {
-            path: '/genTableHomeVue3', 
-            name: 'GenTableHomeVue3', 
-            component: GenTableHomeVue3
+            path: '/genTableSSM', 
+            name: 'GenTableSSM', 
+            meta: { title: "代码生成" ,roles: ["admin"]},
+            component: GenTableSSM
          },
          {
             path: '/swagger',
             name:'Swagger',
+            meta: { title: "接口测试" ,roles: ["admin"]},
             component: Swagger
          },
          {
             path: '/druid',
             name:'Druid',
+            meta: { title: "数据库监控" ,roles: ["admin"]},
             component: Druid
          },
          {
             path: '/serverM',
             name:'ServerM',
+            meta: { title: "服务器监控" ,roles: ["admin"]},
+            component: ServerM
+         },
+         {
+            path: '/serverM',
+            name:'ServerM',
+            meta: { title: "服务器监控" ,roles: ["admin"]},
             component: ServerM
          },
       ]

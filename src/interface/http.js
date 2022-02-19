@@ -11,6 +11,7 @@ var instance = axios.create({
 //------------------- 一、请求拦截器 忽略
 instance.interceptors.request.use(function(config) {
     if (localStorage.getItem('token')) {
+        //在请求头Request Headers中加入token
         config.headers.token = `${localStorage.getItem('token')}`;
     }
     return config;
@@ -30,6 +31,7 @@ instance.interceptors.response.use(function (response) {
         switch (error.response.status) {
             case 401:
                 localStorage.clear();     //删除用户信息
+                sessionStorage.clear();
                 //如果超时就处理 ，指定要跳转的页面(比如登陆页)
                 ElMessage.warning("token失效,请重新登录!");
                 router.replace({
