@@ -92,7 +92,7 @@ import { reactive, ref, toRefs ,defineComponent,nextTick} from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'//弹窗提示
 import {Search,Edit,Check,Message,Star,Delete,} from '@element-plus/icons-vue'//图标
 import {AbleGenTable,GenTable,DeleteClass,QueryGenTable} from '../interface/GenTable';//接口
-import {DateFormat} from '../util/dateFormat'//日期
+import {DateFormat} from '../util/dateFormatUtil'//日期
 
   const apiUrl ="http://localhost:8081/";
 

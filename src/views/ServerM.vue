@@ -163,7 +163,7 @@ const iconStyle = computed(() => {
 const state = reactive({
   loading:true,//显示加载中
   cpuTable:[{attribute: '核心数',value: '暂无数据',},{attribute: '用户使用率',value: '暂无数据',},{attribute: '系统使用率',value: '暂无数据',},{attribute: '当前空闲率',value: '暂无数据',}],
-  RAMTable:[{attribute: '总内存',RAM: '16G',JVM: "686.5M"},{attribute: '已用内存',RAM: '暂无数据',JVM: "暂无数据"},{attribute: '剩余内存',RAM: '暂无数据',JVM: "暂无数据"},{attribute: '使用率',RAM: '暂无数据',JVM: "暂无数据"}],
+  RAMTable:[{attribute: '总内存',RAM: '暂无数据',JVM: "暂无数据"},{attribute: '已用内存',RAM: '暂无数据',JVM: "暂无数据"},{attribute: '剩余内存',RAM: '暂无数据',JVM: "暂无数据"},{attribute: '使用率',RAM: '暂无数据',JVM: "暂无数据"}],
   sysInformation:{},//服务器信息
   jvmInformation:{},//jvm，Java虚拟机信息
   sysFiles:[],//磁盘状态

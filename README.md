@@ -1,6 +1,10 @@
-# Vue 3 + Vite
+# Vue 3 + Vite + element-plus
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+项目是基于 vue3.2 + vite2 + Element-Plus + Vue-Router4 + Javascript开发的中后台管理平台，开箱即用！赶快试试吧...
+
+[vue3](https://v3.cn.vuejs.org/guide/introduction.html)
+[vite2](https://vitejs.cn/guide/)
+[Element-Plus](https://element-plus.gitee.io/zh-CN/component/button.html)
 
 ## Recommended IDE Setup
 

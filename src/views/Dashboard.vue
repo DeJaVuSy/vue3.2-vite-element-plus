@@ -4,7 +4,7 @@
       <el-card class="order-item">
         <template #header>
           <div class="card-header">
-            <span>今日订单数</span>
+            <span>软件使用总次数</span>
           </div>
         </template>
         <div class="item">1888</div>
@@ -12,10 +12,10 @@
       <el-card class="order-item">
         <template #header>
           <div class="card-header">
-            <span>今日日活</span>
+            <span>今日使用次数</span>
           </div>
         </template>
-        <div class="item">36271</div>
+        <div class="item">200</div>
       </el-card>
       <el-card class="order-item">
         <template #header>
@@ -33,15 +33,16 @@
 <script>
 import { onMounted, onUnmounted } from 'vue'
 
+import * as echarts from 'echarts'
+
 let myChart = null
 export default {
   name: 'Index',
   setup() {
     onMounted(() => {
-      if (window.echarts) {
+      if (echarts) {
         // 基于准备好的dom，初始化echarts实例
-        myChart = window.echarts.init(document.getElementById('zoom'))
-
+        myChart = echarts.init(document.getElementById('zoom'))
         // 指定图表的配置项和数据
         const option = {
           title: {
@@ -74,7 +75,7 @@ export default {
             {
               type: 'category',
               boundaryGap: false,
-              data: ['2021-03-11', '2021-03-12', '2021-03-13', '2021-03-14', '2021-03-15', '2021-03-16', '2021-03-17']
+              data: ['2021-08-11', '2022-09-12', '2021-10-13', '2021-11-14', '2021-12-15', '2022-01-16', '2022-02-17']
             }
           ],
           yAxis: [
