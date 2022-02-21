@@ -15,6 +15,7 @@ const routes = [
    {
       path: '/:pathMatch(.*)*',
       name: 'Login', 
+      meta: { title: "登录" },
       component: Login
    },
    {
@@ -27,19 +28,20 @@ const routes = [
       name: 'Index',
       component: Index,
       meta: {
+         title: "索引",
          requireAuth: true
       },
       children: [  //路由的嵌套，实现页面局部刷新
          {
             path: '/home',
             name:'Home',
-            meta: { title: "项目简介" },
+            meta: { title: "主页" },
             component: Home,//页面最初加载的组件
          },
          {
             path: '/dashboard',
             name:'Dashboard',
-            meta: { title: "服务器监控" ,roles: ["admin"]},
+            meta: { title: "软件使用情况" ,roles: ["admin"]},
             component: Dashboard
          },
          {
@@ -91,6 +93,11 @@ const router = createRouter({
 
 //挂载路由导航守卫
 router.beforeEach((to, from, next) => {
+   if (to.meta.title) {
+      document.title = to.meta.title;//动态设置浏览器标题title
+   } else {
+      document.title = '后台管理' //默认的title
+   }
    if (to.path === '/') return next()
    // 获取token
    const tokenStr = window.localStorage.getItem('token')

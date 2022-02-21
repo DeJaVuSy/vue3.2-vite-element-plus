@@ -1,10 +1,10 @@
 # Vue 3 + Vite + element-plus
 
 项目是基于 vue3.2 + vite2 + Element-Plus + Vue-Router4 + Javascript开发的中后台管理平台，开箱即用！赶快试试吧...
-
-[vue3](https://v3.cn.vuejs.org/guide/introduction.html)
-[vite2](https://vitejs.cn/guide/)
-[Element-Plus](https://element-plus.gitee.io/zh-CN/component/button.html)
+开发文档:
+[vue3文档](https://v3.cn.vuejs.org/guide/introduction.html)
+[vite2文档](https://vitejs.cn/guide/)
+[Element-Plus组件](https://element-plus.gitee.io/zh-CN/component/button.html)
 
 ## Recommended IDE Setup
 
