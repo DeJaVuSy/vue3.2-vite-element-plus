@@ -9,13 +9,12 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'//国际化
 import Axios from 'axios'
 // 设置icon
 import installIcon from './util/iconsUtil.js'
-import * as echarts from 'echarts'
+//import * as echarts from 'echarts'
 
 const app = createApp(App)
 // installElementPlus(app)
 app.use(ElementPlus,{locale: zhCn,})//组件中文化配置
-app.config.globalProperties.$echarts = echarts
 app.use(router).mount('#app')
 app.use(installIcon) // 注册全局图标
-
+//app.config.globalProperties.$echarts = echarts
   

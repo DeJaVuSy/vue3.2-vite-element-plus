@@ -5,7 +5,7 @@
         <el-avatar :size="50" :src="avatar"></el-avatar>
       </div>
       <div class="head-card-content">
-        <h2 class="title">您好 Vue3-Admin, 开始您一天的工作吧！</h2>
+        <h2 class="title">{{ TimeFrame()}} {{username}} 开始您一天的工作吧！</h2>
         <p class="desc">
           vue3-admin 是基于 vue3.2 + vite2 + Element-Plus + Vue-Router4 +
           Javascript开发的中后台管理平台，开箱即用！赶快试试吧...
@@ -106,8 +106,13 @@
 </script>
 
 <script setup>
-  import { ref, computed, reactive, onBeforeMount } from 'vue';
-  import avatar from "../assets/img/avatar(1).jpg";//头像
+import { ref, computed, reactive, onBeforeMount } from 'vue';
+import avatar from "../assets/img/avatar(1).jpg";//头像
+import {TimeFrame} from "../util/dateFormatUtil.js"//判断时间段
+import Cookies from "js-cookie"//用于记住账号
+// 所谓的vue-i18n国际化方案，简而言之，就是根据它的规则自己建立一套语言字典，对于每一个字（message）都有一个统一的标识符，
+//我们直接在文中使用该标识符代替原来固定的某一语言，该方案在内部会自动转为你需要查看的语言。
+//import { useI18n } from 'vue-i18n';
 
   //import { CountTo } from 'vue3-count-to';
   //import Echarts from '@/components/Echarts/index.vue';
@@ -120,6 +125,9 @@
   //import { useI18n } from 'vue-i18n';
   //const { t } = useI18n();
 
+  //从Cookies中获取用户名称
+  const username = Cookies.get('username');
+
   const state = reactive({
     list: [],
     prefix: '',
@@ -129,18 +137,11 @@
 
   //import { getResouceList } from '@/api/index';
 
-  const hour = new Date().getHours();
-  const thisTime = ref();
-    // hour < 8
-    //   ? t('sayHi.early')
-    //   : hour <= 11
-    //   ? t('sayHi.morning')
-    //   : hour <= 13
-    //   ? t('sayHi.noon')
-    //   : hour < 18
-    //   ? t('sayHi.afternoon')
-    //   : t('sayHi.evening');
-  const sayHi = ref(thisTime);
+  //判断时间段
+  // const hour = new Date().getHours();;
+  // const thisTime = hour == 0? '子夜好': hour < 5? '凌晨好': hour < 8? '早上好': hour < 11? '上午好': 
+  //                  hour < 13? '中午好' : hour < 17? '下午好': hour < 19? '傍晚好': hour < 23? '晚上好': '子夜好';
+  // const sayHi = ref(thisTime);
 
   const series2 = reactive([
     {

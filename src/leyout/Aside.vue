@@ -93,9 +93,12 @@ import {MenuQuery} from '../interface/Menu';//接口
     menuQuery();
     //获取当前路由url
     //console.log('打印路由',router.currentRoute._value.fullPath);
-    // if(router.currentRoute._value.fullPath == '/index'){
-    //   router.push('/notFound');
-    // }
+    if(router.currentRoute._value.fullPath == '/index'){
+      state.defaultActive = null;
+      state.defaultOpeneds = null;
+
+      router.push('/notFound');
+    }
 
     // let menuSelect = sessionStorage.getItem('menuSelect');
     // //console.log(menuSelect);

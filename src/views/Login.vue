@@ -54,16 +54,17 @@
 
 <script setup>
 import { getCurrentInstance, reactive, ref, watch ,defineComponent,nextTick} from "vue";
-import { ElMessageBox, ElMessage } from 'element-plus'//控件
+import { ElMessageBox, ElMessage, ElNotification } from 'element-plus'//控件
 import {User,Lock,} from '@element-plus/icons-vue'//图标
 import { useRouter } from "vue-router";//路由
 //import { useStore } from "vuex";
 import { encode,decode } from "js-base64";//修改编码格式
-import Cookies from "js-cookie"//用于记住账号和密码
+import Cookies from "js-cookie"//用于记住账号
 // 引入验证码组件
 import Identify from "../components/Identify.vue";
 //引入接口
 import {Login} from "../interface/login"
+import {TimeFrame} from "../util/dateFormatUtil.js"
 
 
 
@@ -98,7 +99,7 @@ import {Login} from "../interface/login"
         if(rememberMeCookies != undefined){
             //alert(rememberMeDecode.username);
             loginFormState.name = Cookies.get("username");//从Cookies取出保存的用户名
-            loginFormState.pwd = decodePwd(Cookies.get("password"));//从Cookies取出保存的密码
+            loginFormState.pwd = decodePwd(Cookies.get("secret"));//从Cookies取出保存的密码
             if(loginFormState.name !=undefined && loginFormState.pwd != undefined){
                 rememberMe.value = !rememberMe.value;//记住密码选中
             }
@@ -156,6 +157,8 @@ import {Login} from "../interface/login"
                 if(message === 'success'){
                     //alert(token);
                     localStorage.setItem('token',token)
+                    //欢迎登录提示
+                    loginSuccessNotify();
                     // 路由跳转
                     router.push('/home')
                 }else{
@@ -209,13 +212,13 @@ import {Login} from "../interface/login"
                 //alert(randomString);
                 //把账号和密码保存到Cookies中
                 Cookies.set('username', loginFormState.name, { expires: 30 })
-                Cookies.set('password', encodePwdSaltCookies, { expires: 30 })
+                Cookies.set('secret', encodePwdSaltCookies, { expires: 30 })
                 Cookies.set('rememberMePro', rememberMe.value, { expires: 30 })
             }
         } else {
             //移除保存的账号和密码
             Cookies.remove('username')
-            Cookies.remove('password')
+            Cookies.remove('secret')
             Cookies.remove('rememberMePro')
         }
     }
@@ -243,14 +246,22 @@ import {Login} from "../interface/login"
     const randomRange = (min, max) => {
         var returnStr = "",
             range = (max ? Math.round(Math.random() * (max-min)) + min : min),
-            charStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            charStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';//随机24个字母大小写加数字
     
         for(var i=0; i<range; i++){
             var index = Math.round(Math.random() * (charStr.length-1));
             returnStr += charStr.substring(index,index+1);
         }
-    return returnStr;
-}
+        return returnStr;
+    }
+    
+    const loginSuccessNotify = () => {
+        ElNotification({
+            title: TimeFrame()+loginFormState.name,
+            message: '欢迎登录vue3.2+vite+element-plus!',
+            type: 'success',
+        })
+    }
 </script>
 
 <style lang="scss" scoped>

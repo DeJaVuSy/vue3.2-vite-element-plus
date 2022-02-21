@@ -12,4 +12,12 @@ export const DateFormat = (time) => {
     var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
     // 拼接
     return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
-}
+};
+//时段
+export const TimeFrame = () => {
+    //获取小时
+    const hour = new Date().getHours();
+    const thisTimeFrame = hour == 0? '子夜好!': hour < 5? '凌晨好!': hour < 8? '早上好!': hour < 11? '上午好!': 
+                     hour < 13? '中午好!' : hour < 17? '下午好!': hour < 19? '傍晚好!': hour < 23? '晚上好!': '子夜好!';
+    return thisTimeFrame;
+};

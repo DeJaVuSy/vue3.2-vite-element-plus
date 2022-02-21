@@ -8,7 +8,7 @@
             <el-dropdown size="medium" @command="handleCommand">
                 <div class="user_info">
                     <el-avatar :size="36" :src="avatar" />
-                    <span class="username">Tom</span>
+                    <span class="username">{{username}}</span>
                 </div>
                 <template #dropdown>
                     <el-dropdown-menu>
@@ -28,11 +28,15 @@ import { useRouter } from "vue-router";
 //import { useStore } from "vuex";
 import screenfull from "screenfull";//导入全屏依赖
 import avatar from "../assets/img/admin.jpg";//头像
+import Cookies from "js-cookie"//cookies
 
+  //从Cookies中获取用户名称
+  const username = Cookies.get('username');
 
   const { proxy } = getCurrentInstance();
   const router = useRouter();
   //const store = useStore();
+
 
   const state = reactive({
     isFullScreen: false,
