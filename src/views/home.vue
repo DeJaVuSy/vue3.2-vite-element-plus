@@ -5,7 +5,7 @@
         <el-avatar :size="50" :src="avatar"></el-avatar>
       </div>
       <div class="head-card-content">
-        <h2 class="title">{{ TimeFrame()}} {{username}} 开始您一天的工作吧！</h2>
+        <h2 class="title">{{username}} {{ TimeFrame()}} 开始您一天的工作吧！</h2>
         <p class="desc">
           vue3-admin 是基于 vue3.2 + vite2 + Element-Plus + Vue-Router4 +
           Javascript开发的中后台管理平台，开箱即用！赶快试试吧...

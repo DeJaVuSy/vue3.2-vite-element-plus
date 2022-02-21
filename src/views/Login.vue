@@ -257,7 +257,7 @@ import {TimeFrame} from "../util/dateFormatUtil.js"
     
     const loginSuccessNotify = () => {
         ElNotification({
-            title: TimeFrame()+loginFormState.name,
+            title: loginFormState.name+TimeFrame(),
             message: '欢迎登录vue3.2+vite+element-plus!',
             type: 'success',
         })
