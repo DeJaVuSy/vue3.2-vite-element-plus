@@ -35,7 +35,7 @@ instance.interceptors.response.use(function (response) {
                 //如果超时就处理 ，指定要跳转的页面(比如登陆页)
                 ElMessage.warning("token失效,请重新登录!");
                 router.replace({
-                    path: '/',//跳转登录页面
+                    path: '/'
                 })
         }
     }

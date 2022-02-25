@@ -9,7 +9,7 @@
                     <router-view />
                 </el-main>
                 <!-- footer -->
-                <el-footer height="48px">
+                <el-footer>
                     Copyright &copy; 2022
                     制作 ·
                     <el-link href="https://blog.csdn.net/qq_45415736?spm=1001.2101.3001.5343" target="_blank" type="primary" :underline="false"><span>CSDN</span></el-link> ·
@@ -75,7 +75,9 @@ import Tabs from "./Tabs.vue";
 
             .el-footer {
                 line-height: 48px;
+                height: auto;
                 font-size: 14px;
+                background-color: #bac3c9;
                 color: rgba(0, 0, 0, 0.5);
                 text-align: center;
                 overflow: hidden;

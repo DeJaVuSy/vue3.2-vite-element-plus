@@ -1,15 +1,17 @@
 <template>
     <el-scrollbar height="800px">
-        <iframe src="http://localhost:8081/druid" id="mobsf" style="position:relative;"></iframe>
+        <iframe :src="store.Base_URL+'/druid'" id="mobsf" style="position:relative;"></iframe>
     </el-scrollbar>
 
 </template>
  
  
 <script>
+import Store from '../store/states'
     export default {
         data () {
             return {
+                store:Store,
             }
         },
         mounted(){

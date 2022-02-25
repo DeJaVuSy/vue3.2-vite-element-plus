@@ -186,11 +186,13 @@ nextTick(() => {
       console.log(response.data);
       state.loading = false;//关闭加载中
     }
-  }).catch((error) =>{
-    state.loading = false;//关闭加载中
-    ElMessage.error("请求超时 "+error)
-    console.log(error)       //请求失败返回的数据
   })
+  // .catch((error) =>{
+  //   if(error.response.status != '401'){
+  //     ElMessage.error("请求超时 "+error.response.status)
+  //     console.log(error)       //请求失败返回的数据
+  //   }
+  // })
 })
 
 </script>

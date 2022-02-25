@@ -17,23 +17,82 @@
         <el-col :xs="24" :sm="24" :md="24" :lg="16" :xl="16">
           <el-card class="card" shadow="hover">
             <template #header>
-              <h3 class="title">Vue3相关资源推荐</h3>
+              <h3 class="title">项目相关资源推荐</h3>
             </template>
-            <div class="card-body" :class="{ mobile: isMobile }">
-              <div
-                class="item"
-                v-for="(item, index) in state.list"
-                @click="handleToDetail(item.url)"
-                :key="index"
-              >
+            <div class="card-body">
+              <div class="item" @click="handleToDetail('https://v3.cn.vuejs.org/guide/introduction.html')">
                 <div class="lf">
-                  <img class="img" :src="`${state.prefix}${item.logo}`" />
-                  <div class="title" v-if="item.title">{{ item.title }}</div>
+                  <img class="img" src="../assets/logo.png" />
+                  <div class="title">Vue3中文文档</div>
                 </div>
-                <div class="desc"> {{ item.desc }} </div>
+                <div class="desc">渐进式JavaScript框架vue3中文文档Vue被设计为可以自底向上逐层应用。</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://juejin.cn/post/7006108454028836895?share_token=35daa6aa-d4c9-436c-b8c9-83b132ca7c4d')">
+                <div class="lf">
+                  <img class="img" src="../assets/logo.png" />
+                  <div class="title">Vue3.2 setup</div>
+                </div>
+                <div class="desc">只需要在script标签上加上setup属性,无需return,template可直接使用</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://element-plus.gitee.io/zh-CN/component/button.html')">
+                <div class="lf">
+                  <img class="img" src="../assets/imgSvg/element-plus-logo.svg" />
+                  <div class="title">文档</div>
+                </div>
+                <div class="desc">基于Vue3面向设计师和开发者的组件库,设计原则:一致、反馈、效率、可控</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://cn.vitejs.dev/guide/')">
+                <div class="lf">
+                  <img class="img" src="../assets/imgSvg/ViteLogo.svg" />
+                  <div class="title">Vite官方中文文档</div>
+                </div>
+                <div class="desc">Vite是一种新型前端构建工具能够显著提升前端开发体验,轻量快速的热重载</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://docs.nestjs.cn/')">
+                <div class="lf">
+                  <img class="img" src="../assets/imgSvg/nesticon.svg" />
+                  <div class="title">中文文档</div>
+                </div>
+                <div class="desc">用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架。</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://www.tslang.cn/docs/home.html')">
+                <div class="lf">
+                  <img class="img" src="../assets/img/typescript-logo.jpg" />
+                  <div class="title">官方文档</div>
+                </div>
+                <div class="desc">TypeScript是JavaScript类型的超集，它可以编译成纯JavaScript。</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://typeorm.bootcss.com/')">
+                <div class="lf">
+                  <img class="img" src="../assets/img/logoTypeORM.png" />
+                  <div class="title">TypeORM文档</div>
+                </div>
+                <div class="desc">它是一个ORM框架,供额外的特性以帮助你开发任何使用数据库的应用程序</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://www.runoob.com/js/js-tutorial.html')">
+                <div class="lf">
+                  <img class="img" src="../assets/img/js.jpg" />
+                  <div class="title">JavaScript</div>
+                </div>
+                <div class="desc">HTML定义了网页的内容,CSS描述了网页的布局,JavaScript控制网页的行为</div>
+              </div>
+              <div class="item" @click="handleToDetail('https://spring.io/why-spring')">
+                <div class="lf">
+                  <img class="img" src="../assets/imgSvg/spring-logo.svg" />
+                  <div class="title">官网</div>
+                </div>
+                <div class="desc">Spring框架附带的许多工具，并获得了许多开箱即用的解决方案的好处。</div>
+              </div>
+              <div class="item" @click="handleToDetail('http://www.redis.cn/')">
+                <div class="lf">
+                  <img class="img" src="../assets/img/redis-white.png" />
+                  <div class="title">Redis中文文档</div>
+                </div>
+                <div class="desc">Redis可以用作数据库、缓存和消息中间件,支持多种类型的数据结构</div>
               </div>
             </div>
           </el-card>
+          
           <el-card class="card" shadow="hover">
             <template #header>
               <h3 class="title">a3</h3>
@@ -254,10 +313,10 @@ import Cookies from "js-cookie"//用于记住账号
             .lf {
               display: flex;
               align-items: center;
-              max-width: 140px;
+              max-width: 200px;
               .img {
                 width: auto;
-                max-width: 120px;
+                max-width: 155px;
                 height: auto;
                 max-height: 40px;
               }
@@ -268,7 +327,7 @@ import Cookies from "js-cookie"//用于记住账号
             .title {
               padding-left: 5px;
               font-size: 18px;
-              font-weight: bold;
+              font-weight: 100%;
             }
             .desc {
               padding: 5px 0;
