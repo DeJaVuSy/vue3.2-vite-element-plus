@@ -188,10 +188,8 @@ nextTick(() => {
     }
   })
   // .catch((error) =>{
-  //   if(error.response.status != '401'){
-  //     ElMessage.error("请求超时 "+error.response.status)
-  //     console.log(error)       //请求失败返回的数据
-  //   }
+  //   ElMessage.error(error)
+  //   console.log(error)//请求失败返回的数据
   // })
 })
 

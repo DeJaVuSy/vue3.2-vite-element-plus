@@ -5,7 +5,7 @@ import { ElMessageBox, ElMessage } from 'element-plus'
 //创建axios的一个实例
 var instance = axios.create({
     baseURL: store.Base_URL,
-    timeout: 6000
+    timeout: 10000 //请求时间
 });
 
 //------------------- 一、请求拦截器 忽略
